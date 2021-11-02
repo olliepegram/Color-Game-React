@@ -8,11 +8,15 @@ const BoxContainer = styled.div`
     flex-wrap: wrap;
 `;
 
-const ColorsList = ({ colors }) => {
+const ColorsList = ({ colors, handleClick }) => {
     return (
         <BoxContainer>
             {colors.map((color) => (
-                <Color key={color} color={color} />
+                <Color
+                    handleClick={handleClick}
+                    key={Math.random() * 999}
+                    color={color}
+                />
             ))}
         </BoxContainer>
     );
