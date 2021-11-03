@@ -6,17 +6,23 @@ import { generateColors, randomIndex } from './helpers';
 
 const App = () => {
     const [colors, setColors] = useState([]);
-    const [chosenIndex, setChosenIndex] = useState(randomIndex(6));
-    const [difficulty, setDifficulty] = useState(6);
+    const [chosenIndex, setChosenIndex] = useState();
+    const [difficulty, setDifficulty] = useState('hard');
     const [gameState, setGameState] = useState('playing');
 
     useEffect(() => {
-        setColors(generateColors(6));
-    }, []);
+        renderColors();
+    }, [difficulty]);
 
-    const newGame = (n) => {
+    const renderColors = () => {
+        let n = difficulty === 'easy' ? 3 : 6;
         setColors(generateColors(n));
         setChosenIndex(randomIndex(n));
+    };
+
+    const newGame = (level) => {
+        setDifficulty(level);
+        renderColors();
     };
 
     const onBoxClick = (e, target) => {
@@ -38,7 +44,7 @@ const App = () => {
     return (
         <div>
             <Header colors={colors} chosenIndex={chosenIndex} />
-            <Menu />
+            <Menu newGame={newGame} />
             <ColorsList handleClick={onBoxClick} colors={colors} />
         </div>
     );
