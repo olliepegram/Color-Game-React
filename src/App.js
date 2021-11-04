@@ -6,7 +6,7 @@ import { generateColors, randomIndex } from './helpers';
 
 const App = () => {
     const [colors, setColors] = useState([]);
-    const [chosenIndex, setChosenIndex] = useState();
+    const [chosenIndex, setChosenIndex] = useState(null);
     const [difficulty, setDifficulty] = useState('hard');
     const [gameState, setGameState] = useState('playing');
 
@@ -22,7 +22,6 @@ const App = () => {
 
     const newGame = (level) => {
         setDifficulty(level);
-        renderColors();
     };
 
     const onBoxClick = (e, target) => {
@@ -43,7 +42,7 @@ const App = () => {
 
     return (
         <div>
-            <Header colors={colors} chosenIndex={chosenIndex} />
+            <Header chosenIndex={colors[chosenIndex]} />
             <Menu newGame={newGame} />
             <ColorsList handleClick={onBoxClick} colors={colors} />
         </div>

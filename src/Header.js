@@ -19,11 +19,11 @@ const HeaderWrap = styled.div`
     }
 `;
 
-const Header = ({ colors, chosenIndex }) => {
+const Header = ({ chosenIndex }) => {
     return (
         <HeaderWrap>
             <h3>React Color Game</h3>
-            <h1>{colors[chosenIndex]}</h1>
+            <h1>{chosenIndex}</h1>
         </HeaderWrap>
     );
 };
