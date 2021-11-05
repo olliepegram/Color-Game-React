@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Box = styled.div`
     width: 350px;
@@ -7,11 +7,7 @@ const Box = styled.div`
     margin: 20px;
     border-radius: 20px;
 
-    ${(props) =>
-        props.color &&
-        css`
-            background: props.color;
-        `};
+    background: ${(props) => (props.color ? props.color : 'white')};
     /* Firefox */
     -moz-transition: all 1s ease-in;
     /* WebKit */
@@ -27,7 +23,7 @@ const Color = ({ color, handleClick }) => {
         handleClick(e, color);
     };
 
-    return <Box onClick={(e) => onBoxClick(e)} />;
+    return <Box color={color} onClick={(e) => onBoxClick(e)} />;
 };
 
 export default Color;

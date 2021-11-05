@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { generateColors, randomIndex } from './helpers';
 import Header from './Header';
 import ColorsList from './ColorsList';
 import Menu from './Menu';
-import { generateColors, randomIndex } from './helpers';
 
 const App = () => {
     const [colors, setColors] = useState([]);
@@ -10,15 +10,15 @@ const App = () => {
     const [difficulty, setDifficulty] = useState('hard');
     const [gameState, setGameState] = useState('playing');
 
-    useEffect(() => {
-        renderColors();
-    }, [difficulty]);
-
-    const renderColors = () => {
+    const renderColors = useCallback(() => {
         let n = difficulty === 'easy' ? 3 : 6;
         setColors(generateColors(n));
         setChosenIndex(randomIndex(n));
-    };
+    }, [difficulty]);
+
+    useEffect(() => {
+        renderColors();
+    }, [renderColors]);
 
     const newGame = (level) => {
         setDifficulty(level);
