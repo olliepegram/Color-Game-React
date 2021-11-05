@@ -11,12 +11,8 @@ const BoxContainer = styled.div`
 const ColorsList = ({ colors, handleClick }) => {
     return (
         <BoxContainer>
-            {colors.map((color) => (
-                <Color
-                    handleClick={handleClick}
-                    key={Math.random() * 999}
-                    color={color}
-                />
+            {colors.map((color, i) => (
+                <Color handleClick={handleClick} key={i} color={color} />
             ))}
         </BoxContainer>
     );

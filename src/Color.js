@@ -6,16 +6,13 @@ const Box = styled.div`
     height: 350px;
     margin: 20px;
     border-radius: 20px;
+    flex: auto;
 
     background: ${(props) => (props.color ? props.color : 'white')};
-    /* Firefox */
-    -moz-transition: all 1s ease-in;
-    /* WebKit */
-    -webkit-transition: all 1s ease-in;
-    /* Opera */
-    -o-transition: all 1s ease-in;
-    /* Standard */
-    transition: all 1s ease-in;
+    -webkit-transition: background 0.2s ease-in-out;
+    -moz-transition: background 0.2s ease-in-out;
+    -o-transition: background 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
 `;
 
 const Color = ({ color, handleClick }) => {

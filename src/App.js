@@ -37,6 +37,7 @@ const App = () => {
             setGameState('playing');
             colorsArr[index] = 'none';
         }
+
         return setColors(colorsArr);
     };
 
