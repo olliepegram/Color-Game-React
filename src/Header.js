@@ -6,24 +6,35 @@ const HeaderWrap = styled.div`
     height: auto;
     text-align: center;
     color: #fff;
-    background-color: hotpink;
-    padding: 40px 0 40px 0;
+    /* background-color: #edb88b; */
+    padding: 25px 0 20px 0;
+
+    background: ${(props) =>
+        props.gameState === 'finished' ? props.background : '#edb88b'};
 
     h3 {
         font-size: 30px;
+        line-height: 50px;
     }
 
     h1 {
         font-size: 70px;
         line-height: 1px;
     }
+
+    @media screen and (max-width: 700px) {
+        h1 {
+            font-size: 45px;
+        }
+    }
 `;
 
-const Header = ({ chosenIndex }) => {
+const Header = ({ gameState, chosenIndex }) => {
     return (
-        <HeaderWrap>
-            <h3>React Color Game</h3>
+        <HeaderWrap background={chosenIndex} gameState={gameState}>
+            <h3>Guess The Color</h3>
             <h1>{chosenIndex}</h1>
+            {gameState === 'finished' ? <h3>You got it!</h3> : <h3>...</h3>}
         </HeaderWrap>
     );
 };

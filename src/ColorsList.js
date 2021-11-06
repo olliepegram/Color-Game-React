@@ -6,6 +6,8 @@ const BoxContainer = styled.div`
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    max-width: 980px;
+    margin: 0 auto;
 `;
 
 const ColorsList = ({ colors, handleClick }) => {

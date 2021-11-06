@@ -14,6 +14,7 @@ const App = () => {
         let n = difficulty === 'easy' ? 3 : 6;
         setColors(generateColors(n));
         setChosenIndex(randomIndex(n));
+        setGameState('playing');
     }, [difficulty]);
 
     useEffect(() => {
@@ -21,7 +22,16 @@ const App = () => {
     }, [renderColors]);
 
     const newGame = (level) => {
-        setDifficulty(level);
+        if (level === 'easy' || level === 'hard') {
+            setDifficulty(level);
+        } else if (level === 'new') {
+            if (difficulty === 'easy') {
+                setDifficulty('easy');
+            } else if (difficulty === 'hard') {
+                setDifficulty('hard');
+            }
+            renderColors();
+        }
     };
 
     const onBoxClick = (e, target) => {
@@ -34,8 +44,8 @@ const App = () => {
             setGameState('finished');
             colorsArr.fill(colorsArr[secretTarget]);
         } else {
-            setGameState('playing');
             colorsArr[index] = 'none';
+            setGameState('playing');
         }
 
         return setColors(colorsArr);
@@ -43,7 +53,7 @@ const App = () => {
 
     return (
         <div>
-            <Header chosenIndex={colors[chosenIndex]} />
+            <Header gameState={gameState} chosenIndex={colors[chosenIndex]} />
             <Menu newGame={newGame} />
             <ColorsList handleClick={onBoxClick} colors={colors} />
         </div>
