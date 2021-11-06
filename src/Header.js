@@ -10,7 +10,7 @@ const HeaderWrap = styled.div`
     padding: 25px 0 20px 0;
 
     background: ${(props) =>
-        props.gameState === 'finished' ? props.background : '#edb88b'};
+        props.gameState === 'finished' ? props.background : 'rgb(19,104,163)'};
 
     h3 {
         font-size: 30px;
